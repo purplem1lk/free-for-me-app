@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-export const App = (props) => {
-  return (<h1>Make It So React</h1>)
-}
+export const App = props => {
+  return <h1>React Components Go Here</h1>;
+};
 
-export default App
+export default App;
