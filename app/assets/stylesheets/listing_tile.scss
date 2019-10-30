@@ -1,0 +1,41 @@
+.listing-tile {
+  text-align: center;
+  align-items: center;
+  margin-bottom: 0px;
+
+  .listing-tile-info {
+    font-family: "Open Sans", serif;
+    font-size: 1rem;
+    margin: 0px;
+  }
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+  height: 180px;
+  color: #800080;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.bottom-centered {
+  position: absolute;
+  bottom: 25px;
+  background-color: white;
+  opacity: 0.8;
+  width: 100%;
+  margin: 0px;
+  text-align: center;
+}
+
+.image-container {
+  transition-property: opacity;
+  transition: 0.3s ease;
+}
+
+.image-container:hover .listing-tile-image {
+  filter: brightness(70%);
+}

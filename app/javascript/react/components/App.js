@@ -1,7 +1,19 @@
-import React from 'react'
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-export const App = (props) => {
-  return (<h1>Make It So React</h1>)
-}
+import ListingIndexContainer from "./ListingIndexContainer";
 
-export default App
+export const App = props => {
+  return (
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ListingIndexContainer} />
+          <Route exact path="/listings" component={ListingIndexContainer} />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
+};
+
+export default App;
