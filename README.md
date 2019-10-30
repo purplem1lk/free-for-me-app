@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Free For Me is a web application made for the Breakable Toy project at Launch Academy, Boston cohort 26.
 
-Things you may want to cover:
+### TODO:
 
-* Ruby version
+Free For Me is an online discussion site for people who want to free-cycle unwanted items and request items they may need. During times where it's second nature to toss out unused items, Free For Me provides a safe space for people to free-cycle items to save money and keep our landfills at a minimum. This project primarily uses Ruby on Rails, React, and the Material UI library.
 
-* System dependencies
+### Installation
 
-* Configuration
+TO DO: Describe the installation process
 
-* Database creation
+### Usage
 
-* Database initialization
+TO DO: Write usage instructions
 
-* How to run the test suite
+### History
 
-* Services (job queues, cache servers, search engines, etc.)
+TO DO: Write history
 
-* Deployment instructions
+### Contributing
 
-* ...
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`.
+3. Commit your changes: `git commit -am 'Add some feature'`.
+4. Push to the branch: `git push origin my-new-feature`.
+5. Submit a pull request.
+
+### Credits
+
+TO DO: Write credits
+
+### License
+
+TO DO: Write license
