@@ -18,7 +18,7 @@ class Api::V1::ListingsController < ApplicationController
       else
         render json: new_listing.errors
       end
-      
+
     else
       render json: { user: "You must be signed in to add a listing." }
     end
