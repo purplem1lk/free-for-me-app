@@ -7,6 +7,7 @@ import { CssBaseline } from "@material-ui/core";
 import ListingIndexContainer from "./ListingIndexContainer";
 import NavBar from "./NavBar";
 import ListingShowContainer from "./ListingShowContainer";
+import NewListingContainer from "./NewListingContainer";
 
 export const App = props => {
   return (
@@ -18,6 +19,7 @@ export const App = props => {
         <Switch>
           <Route exact path="/" component={ListingIndexContainer} />
           <Route exact path="/listings" component={ListingIndexContainer} />
+          <Route exact path="/listings/new" component={NewListingContainer} />
           <Route exact path="/listings/:id" component={ListingShowContainer} />
         </Switch>
       </BrowserRouter>
