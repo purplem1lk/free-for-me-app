@@ -22,8 +22,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, "Password confirmation:" %><br />
+    <%= f.label :password_confirmation, "Password confirmation:" %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profile_photo, "Upload Profile Photo" %>
+    <%= f.file_field :profile_photo %>
   </div>
 
   <div class="actions">
