@@ -13,7 +13,7 @@ const NewListingContainer = props => {
 
   const validForSubmission = () => {
     let submitErrors = {};
-    const requiredFields = ["title", "desription", "postal_code"];
+    const requiredFields = ["title", "description", "postal_code"];
     requiredFields.forEach(field => {
       if (newListing[field].trim() === "") {
         submitErrors = {
@@ -51,6 +51,7 @@ const NewListingContainer = props => {
         .then(response => response.json())
         .then(body => {
           if (body.id) {
+            setNewListing(newListing);
             setShouldRedirect(true);
           } else {
             setErrors(body);
@@ -98,7 +99,7 @@ const NewListingContainer = props => {
             </label>
 
             <label className="small-12 columns">
-              Address: {errors.description}
+              Description: {errors.description}
               <input
                 type="text"
                 name="description"
