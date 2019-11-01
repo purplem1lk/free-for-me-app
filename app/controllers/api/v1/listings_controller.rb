@@ -24,6 +24,19 @@ class Api::V1::ListingsController < ApplicationController
     end
   end
 
+  def update
+    edited_listing = Listing.find(params["id"])
+    if edited_listing.user == current_user
+      if edited_listing.update(listing_params)
+        render json: edited_listing
+      else
+        render json: edited_listing.errors
+      end
+    else
+      render json: {user: "You are not permitted to edit this review."}
+    end
+  end
+
   private
 
   def listing_params

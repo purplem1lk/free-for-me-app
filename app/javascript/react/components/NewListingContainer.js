@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { isEmpty } from "lodash";
 
+import ListingIndexContainer from "./ListingIndexContainer";
+
 const NewListingContainer = props => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState({});
   const [newListing, setNewListing] = useState({
     title: "",
     description: "",
-    postal_code: ""
+    postal_code: "",
+    listing_photos: ""
   });
 
   const validForSubmission = () => {
@@ -66,10 +69,18 @@ const NewListingContainer = props => {
   }
 
   const handleInputChange = event => {
-    setNewListing({
-      ...newListing,
-      [event.currentTarget.name]: event.currentTarget.value
-    });
+    if (event.currentTarget && event.currentTarget.files) {
+      console.log(event.currentTarget.files);
+      setNewListing({
+        ...newListing,
+        [event.currentTarget.name]: Array.from(event.currentTarget.files)
+      });
+    } else {
+      setNewListing({
+        ...newListing,
+        [event.currentTarget.name]: event.currentTarget.value
+      });
+    }
   };
 
   const clearForm = event => {
@@ -81,6 +92,7 @@ const NewListingContainer = props => {
     });
     setErrors({});
   };
+
   return (
     <div className="form-background">
       <div className="form-page">
@@ -119,11 +131,12 @@ const NewListingContainer = props => {
             </label>
 
             <label className="small-12 columns">
-              Image URL: (Optional)
+              Select photos:
               <input
-                type="text"
-                name="image"
-                value={newListing.image}
+                type="file"
+                multiple
+                name="listing_photos"
+                value={newListing.listing_photos}
                 onChange={handleInputChange}
               />
             </label>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import EditListingContainer from "./EditListingContainer";
 import ListingTile from "./ListingTile";
 
 const ListingIndexContainer = props => {
@@ -35,8 +36,8 @@ const ListingIndexContainer = props => {
         id={listing.id}
         title={listing.title}
         description={listing.description}
-        postal_code={listing.postal_code}
-        image={listing.image}
+        postalCode={listing.postal_code}
+        image={listing.listing_photo}
       />
     );
   });
@@ -54,11 +55,11 @@ const ListingIndexContainer = props => {
     <div className="index-background">
       <div className="index-page">
         <p className="index-title row text-center">
-          Free-cycle Listings in Boston!
+          Free-cycle Listings in Boston
         </p>
         <hr />
+        <div className="text-center row float-right">{button}</div>
         <div className="row">{listingTiles}</div>
-        <div className="text-center row">{button}</div>
       </div>
     </div>
   );
