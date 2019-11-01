@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import EditListingContainer from "./EditListingContainer";
+
 const ListingShowContainer = props => {
   const [listing, setListing] = useState({});
 
@@ -29,6 +31,12 @@ const ListingShowContainer = props => {
     <div>
       <h3>{listing.title}</h3>
       <p>{listing.description}</p>
+      {listing.image}
+      <div className="columns small-12 medium-6 list-block">
+        <div>
+          <EditListingContainer />
+        </div>
+      </div>
     </div>
   );
 };

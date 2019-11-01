@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: [:index]
-      resources :listings, only: [:index, :show, :create]
+      resources :listings, only: [:index, :show, :create, :update, :edit]
     end
   end
 end
