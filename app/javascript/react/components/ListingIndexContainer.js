@@ -1,10 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "@material-ui/core/Link";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import EditListingContainer from "./EditListingContainer";
 import ListingTile from "./ListingTile";
 
+const useStyles = makeStyles(theme => ({
+  fab: {
+    position: "fixed",
+    right: "2rem",
+    bottom: "2rem",
+    zIndex: 999
+  },
+  fabLink: {
+    marginTop: "4px",
+    "&:hover": {
+      color: "inherit"
+    }
+  }
+}));
+
 const ListingIndexContainer = props => {
+  const classes = useStyles();
   const [listings, setListings] = useState([]);
   const [showButton, setShowButton] = useState(false);
 
@@ -37,7 +58,7 @@ const ListingIndexContainer = props => {
         title={listing.title}
         description={listing.description}
         postalCode={listing.postal_code}
-        photo={listing.photo_urls}
+        photo={listing.photo}
       />
     );
   });
@@ -45,9 +66,19 @@ const ListingIndexContainer = props => {
   let button = "";
   if (showButton) {
     button = (
-      <Link to="/listings/new" className="button">
-        Add New Listing
-      </Link>
+      <Tooltip title="Add Listing">
+        <Fab color="primary" aria-label="add" className={classes.fab}>
+          <Typography variant="body2">
+            <Link
+              href="/listings/new"
+              className={classes.fabLink}
+              color="inherit"
+            >
+              <AddIcon />
+            </Link>
+          </Typography>
+        </Fab>
+      </Tooltip>
     );
   }
 
@@ -58,7 +89,7 @@ const ListingIndexContainer = props => {
           Free-cycle Listings in Boston
         </p>
         <hr />
-        <div className="text-center row float-right">{button}</div>
+        {button}
         <div className="row">{listingTiles}</div>
       </div>
     </div>

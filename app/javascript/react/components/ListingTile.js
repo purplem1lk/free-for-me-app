@@ -28,10 +28,10 @@ const useStyles = makeStyles({
 const ListingTile = props => {
   const classes = useStyles();
 
-  let image = props.photo_urls;
+  let photo = props.photo;
 
-  if (!image) {
-    image = "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3";
+  if (!photo) {
+    photo = "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3";
   }
 
   return (
@@ -41,7 +41,7 @@ const ListingTile = props => {
           <Card className={classes.card}>
             <CardMedia
               className={classes.media}
-              image="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3"
+              image={photo}
               title="Listing Tile"
             />
             <CardContent>

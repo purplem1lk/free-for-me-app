@@ -80,6 +80,8 @@ const NewListingContainer = props => {
       payload.photo = uploadUrl;
     }
 
+    //  *** IN CORS CONFIG IN AWS, MUST COPY CORS CONFIG FROM DEV TO PRODUCTION SO PICS CAN UPLOAD IN HEROKU
+
     if (validForSubmission()) {
       fetch("/api/v1/listings", {
         credentials: "same-origin",

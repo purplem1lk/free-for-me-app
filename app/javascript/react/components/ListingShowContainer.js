@@ -31,7 +31,7 @@ const ListingShowContainer = props => {
     <div>
       <h3>{listing.title}</h3>
       <p>{listing.description}</p>
-      {listing.photo}
+      <img src={listing.photo} />
       <div className="columns small-12 medium-6 list-block">
         <div>
           <EditListingContainer />
