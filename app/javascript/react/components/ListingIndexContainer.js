@@ -4,9 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import Tooltip from "@material-ui/core/Tooltip";
+import Divider from "@material-ui/core/Divider";
 
-import EditListingContainer from "./EditListingContainer";
 import ListingTile from "./ListingTile";
 
 const useStyles = makeStyles(theme => ({
@@ -19,8 +18,16 @@ const useStyles = makeStyles(theme => ({
   fabLink: {
     marginTop: "4px",
     "&:hover": {
-      color: "inherit"
+      color: "inherit",
+      textDecoration: "none"
     }
+  },
+  fabText: {
+    marginLeft: "0.25rem",
+    verticalAlign: "top"
+  },
+  divider: {
+    marginBottom: "1rem"
   }
 }));
 
@@ -59,6 +66,7 @@ const ListingIndexContainer = props => {
         description={listing.description}
         postalCode={listing.postal_code}
         photo={listing.photo}
+        createdAAt={listing.created_at}
       />
     );
   });
@@ -66,29 +74,27 @@ const ListingIndexContainer = props => {
   let button = "";
   if (showButton) {
     button = (
-      <Tooltip title="Add Listing">
-        <Fab color="primary" aria-label="add" className={classes.fab}>
-          <Typography variant="body2">
-            <Link
-              href="/listings/new"
-              className={classes.fabLink}
-              color="inherit"
-            >
-              <AddIcon />
-            </Link>
-          </Typography>
-        </Fab>
-      </Tooltip>
+      <Fab
+        color="primary"
+        variant="extended"
+        aria-label="add"
+        className={classes.fab}
+      >
+        <Link href="/listings/new" className={classes.fabLink} color="inherit">
+          <AddIcon />
+          <span className={classes.fabText}>Add Listing</span>
+        </Link>
+      </Fab>
     );
   }
 
   return (
     <div className="index-background">
       <div className="index-page">
-        <p className="index-title row text-center">
-          Free-cycle Listings in Boston
-        </p>
-        <hr />
+        <Typography variant="h4" gutterBottom>
+          Active Listings in Boston
+        </Typography>
+        <Divider className={classes.divider} />
         {button}
         <div className="row">{listingTiles}</div>
       </div>

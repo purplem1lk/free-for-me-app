@@ -16,6 +16,7 @@
     "@material-ui/icons": "^4.5.1",
     "@rails/webpacker": "3.5",
     "babel-loader": "^8.0.6",
+    "moment": "^2.24.0",
     "prop-types": "~15.6.0",
     "react": "~16.8.0",
     "react-dom": "~16.8.0",
