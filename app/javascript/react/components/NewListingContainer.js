@@ -134,8 +134,8 @@ const NewListingContainer = props => {
               <input
                 type="file"
                 multiple
-                name="listing_photos"
-                value={newListing.listing_photos}
+                name="photos"
+                value={newListing.photo_urls}
                 ref={fileInput}
               />
             </label>

@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 const ListingTile = props => {
   const classes = useStyles();
 
-  let image = props.photo;
+  let image = props.photo_urls;
 
   if (!image) {
     image = "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3";

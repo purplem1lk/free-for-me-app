@@ -3,6 +3,8 @@ class Listing < ApplicationRecord
   validates :description, presence: true
   validates :postal_code, presence: true
 
+  mount_uploaders :photo_urls, PhotoUploader
+
   belongs_to :user
-  has_many :photos
+  has_many :photo_urls
 end
