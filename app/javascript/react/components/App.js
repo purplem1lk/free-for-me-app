@@ -11,7 +11,7 @@ export const App = props => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [user, setUser] = useState({});
 
-  useEffect(() => {
+  const getIsSignedIn = () => {
     fetch("/auth/is_signed_in")
       .then(response => response.json())
       .then(body => {
@@ -20,7 +20,13 @@ export const App = props => {
           setUser(body.user);
         }
       });
+  };
+
+  useEffect(() => {
+    getIsSignedIn();
   }, []);
+
+  //whenever we do a straight up component, you can't pass the component props so instead of using a componenet, we have to use render in order to render what component we want for the path and give it a prop like for const getIsSignedIn. render uses an anonymous function below.
 
   return (
     <div>
@@ -30,6 +36,11 @@ export const App = props => {
         </header>
         <Switch>
           <Route exact path="/" component={ListingIndexContainer} />
+          <Route
+            exact
+            path="/login/"
+            render={() => <SignInForm getIsSignedIn={getIsSignedIn} />}
+          />
           <Route exact path="/login/" component={SignInForm} />
           <Route exact path="/listings" component={ListingIndexContainer} />
           <Route exact path="/listings/new" component={NewListingContainer} />
