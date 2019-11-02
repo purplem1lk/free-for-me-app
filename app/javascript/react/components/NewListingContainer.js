@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Redirect } from "react-router-dom";
 import { isEmpty } from "lodash";
 
 import ListingIndexContainer from "./ListingIndexContainer";
 
 const NewListingContainer = props => {
+  const fileInput = useRef();
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState({});
   const [newListing, setNewListing] = useState({
     title: "",
     description: "",
-    postal_code: "",
-    listing_photos: ""
+    postal_code: ""
   });
 
   const validForSubmission = () => {
@@ -32,14 +32,21 @@ const NewListingContainer = props => {
 
   const postNewListing = () => {
     event.preventDefault();
+
+    let formData = new FormData();
+    [...fileInput.current.files].map((file, index) => {
+      formData.append(`file${index}`, file);
+    });
+
+    formData.append("json", JSON.stringify(newListing));
+
     if (validForSubmission()) {
       fetch("/api/v1/listings", {
         credentials: "same-origin",
         method: "POST",
-        body: JSON.stringify(newListing),
+        body: formData,
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
+          Accept: "application/json"
         }
       })
         .then(response => {
@@ -69,18 +76,10 @@ const NewListingContainer = props => {
   }
 
   const handleInputChange = event => {
-    if (event.currentTarget && event.currentTarget.files) {
-      console.log(event.currentTarget.files);
-      setNewListing({
-        ...newListing,
-        [event.currentTarget.name]: Array.from(event.currentTarget.files)
-      });
-    } else {
-      setNewListing({
-        ...newListing,
-        [event.currentTarget.name]: event.currentTarget.value
-      });
-    }
+    setNewListing({
+      ...newListing,
+      [event.currentTarget.name]: event.currentTarget.value
+    });
   };
 
   const clearForm = event => {
@@ -137,7 +136,7 @@ const NewListingContainer = props => {
                 multiple
                 name="listing_photos"
                 value={newListing.listing_photos}
-                onChange={handleInputChange}
+                ref={fileInput}
               />
             </label>
 

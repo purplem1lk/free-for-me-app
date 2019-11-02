@@ -1,3 +1,5 @@
+require 'json'
+
 class Api::V1::ListingsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
@@ -11,7 +13,7 @@ class Api::V1::ListingsController < ApplicationController
 
   def create
     if user_signed_in?
-      new_listing = Listing.new(listing_params)
+      new_listing = Listing.new(JSON.parse(params[:json]))
       new_listing.user = current_user
       if new_listing.save
         render json: new_listing
