@@ -1,14 +1,18 @@
-import React, { useState } from "react";
-import _ from "lodash";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
-const EditListingTile = props => {
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+const EditListingContainer = props => {
+  let history = useHistory();
   const [errors, setErrors] = useState({});
-  const [editListing, setEditListing] = useState({
-    title: props.title,
-    description: props.description,
-    postal_code: props.postal_code
-  });
+  const [editListing, setEditListing] = useState({});
+
+  useEffect(() => {
+    setEditListing({
+      title: props.title,
+      description: props.description,
+      postal_code: props.postalCode
+    });
+  }, [props]);
 
   const postEditListing = event => {
     event.preventDefault();
@@ -33,7 +37,7 @@ const EditListingTile = props => {
       .then(response => response.json())
       .then(body => {
         if (body.id) {
-          setShouldRedirect(true);
+          history.push("/listings");
         } else {
           setErrors(body);
         }
@@ -48,10 +52,6 @@ const EditListingTile = props => {
     });
   };
 
-  if (shouldRedirect) {
-    props.resetView();
-  }
-
   return (
     <div>
       <form className="small-12 columns" onSubmit={postEditListing}>
@@ -60,6 +60,7 @@ const EditListingTile = props => {
         <label>
           Title: {errors.title}
           <input
+            type="text"
             name="title"
             value={editListing.title}
             onChange={handleInputChange}
@@ -100,4 +101,4 @@ const EditListingTile = props => {
   );
 };
 
-export default EditListingTile;
+export default EditListingContainer;
