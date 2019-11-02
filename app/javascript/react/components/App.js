@@ -5,6 +5,7 @@ import ListingIndexContainer from "./ListingIndexContainer";
 import NavBar from "./NavBar";
 import ListingShowContainer from "./ListingShowContainer";
 import NewListingContainer from "./NewListingContainer";
+import SignInForm from "./SignInForm";
 
 export const App = props => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -29,6 +30,7 @@ export const App = props => {
         </header>
         <Switch>
           <Route exact path="/" component={ListingIndexContainer} />
+          <Route exact path="/login/" component={SignInForm} />
           <Route exact path="/listings" component={ListingIndexContainer} />
           <Route exact path="/listings/new" component={NewListingContainer} />
           <Route exact path="/listings/:id" component={ListingShowContainer} />
