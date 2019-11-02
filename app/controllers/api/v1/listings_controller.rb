@@ -13,7 +13,7 @@ class Api::V1::ListingsController < ApplicationController
 
   def create
     if user_signed_in?
-      new_listing = Listing.new(JSON.parse(params[:json]))
+      new_listing = Listing.new(listing_params)
       new_listing.user = current_user
       if new_listing.save
         render json: new_listing
@@ -42,7 +42,7 @@ class Api::V1::ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:title, :description, :postal_code, :photo_urls)
+    params.require(:listing).permit(:title, :description, :postal_code)
   end
 
 end
