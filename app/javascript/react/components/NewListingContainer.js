@@ -30,23 +30,64 @@ const NewListingContainer = props => {
     return isEmpty(submitErrors);
   };
 
-  const postNewListing = () => {
+  const postNewListing = async () => {
     event.preventDefault();
 
-    let formData = new FormData();
-    [...fileInput.current.files].map((file, index) => {
-      formData.append(`file${index}`, file);
-    });
+    // uploadURL will save the uploaded photo as a URL, if they have one.
+    let uploadUrl = "";
+    if (fileInput.current.files[0]) {
+      const responsePayload = await fetch("/s3/direct_post").then(response =>
+        response.json()
+      );
 
-    formData.append("json", JSON.stringify(newListing));
+      // there's a property in the response from S3 called URL, so we are only calling URL below:
+      const url = responsePayload.url;
+      const formData = new FormData();
+      // This is a recipe for an object that we want to put all the properties inside of formdata
+      Object.keys(responsePayload.fields).forEach(key => {
+        formData.append(key, responsePayload.fields[key]);
+      });
+      // must be responsePayload.fields[key] so it knows which key to look at.
+
+      formData.append("file", fileInput.current.files[0]);
+      //  "file" above must be in quotes since it is the name of the key.) fileInput.current.files[0] is still the blob, not yet the string.
+
+      // the url in the fetch is the url that S3 told us to upload it
+      const xmlResponse = await fetch(url, {
+        method: "POST",
+        body: formData
+      }).then(response => response.text());
+      // because this is XML and not JSON, we want response.text(), not response.JSON()
+      // in the response that S3 sends back, it gives us a <Location>, which is where the image got uploaded to. We need to get this value in order to save it to our database. response.text() converts XML to a string.
+
+      // a DOMParser class provides the ability to parse XML or HTML source code from a string
+      uploadUrl = new DOMParser()
+        .parseFromString(xmlResponse, "application/xml")
+        // above is where we actually give the xmlResponse and telling it the content-type: "application/xml". the content-type is required so DOMParser knows what to parse.
+        .getElementsByTagName("Location")[0].textContent;
+      // we'll get the value of the tagname Location, textContent is the stuff inside of the tags. We need to add [0], regardless how many photos we were uploading.
+    }
+
+    // this is what we send to our Rails API
+    let payload = {
+      title: newListing.title,
+      description: newListing.description,
+      postal_code: newListing.postal_code
+    };
+
+    // if uploadUrl is truthy, then the payload.photo is now the uploadUrl
+    if (uploadUrl) {
+      payload.photo = uploadUrl;
+    }
 
     if (validForSubmission()) {
       fetch("/api/v1/listings", {
         credentials: "same-origin",
         method: "POST",
-        body: formData,
+        body: JSON.stringify(payload),
         headers: {
-          Accept: "application/json"
+          Accept: "application/json",
+          "Content-Type": "application/json"
         }
       })
         .then(response => {
@@ -130,14 +171,8 @@ const NewListingContainer = props => {
             </label>
 
             <label className="small-12 columns">
-              Select photos:
-              <input
-                type="file"
-                multiple
-                name="photos"
-                value={newListing.photo_urls}
-                ref={fileInput}
-              />
+              Select photo:
+              <input type="file" name="photo" ref={fileInput} />
             </label>
 
             <div className="text-center">
