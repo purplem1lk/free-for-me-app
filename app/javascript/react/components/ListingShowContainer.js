@@ -34,7 +34,12 @@ const ListingShowContainer = props => {
       <img src={listing.photo} />
       <div className="columns small-12 medium-6 list-block">
         <div>
-          <EditListingContainer />
+          <EditListingContainer
+            id={listingId}
+            title={listing.title}
+            description={listing.description}
+            postalCode={listing.postal_code}
+          />
         </div>
       </div>
     </div>

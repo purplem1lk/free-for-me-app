@@ -35,7 +35,7 @@ class Api::V1::ListingsController < ApplicationController
         render json: edited_listing.errors
       end
     else
-      render json: {user: "You are not permitted to edit this review."}
+      render json: {user: "You are not permitted to edit this listing."}
     end
   end
 
