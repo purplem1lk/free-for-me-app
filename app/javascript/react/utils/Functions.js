@@ -1,9 +1,11 @@
-var Functions = {
-  getMetaContent: function(name) {
-    var metas = document.getElementsByTagName("meta");
+import React from "react";
 
-    for (var i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute("name") == name) {
+const Functions = {
+  getMetaContent: function(name) {
+    let metas = document.getElementsByTagName("meta");
+
+    for (let i = 0; i < metas.length; i++) {
+      if (metas[i].getAttribute("name") === name) {
         return metas[i].getAttribute("content");
       }
     }
@@ -12,4 +14,4 @@ var Functions = {
   }
 };
 
-module.exports = Functions;
+export default Functions;
