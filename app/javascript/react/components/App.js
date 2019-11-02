@@ -1,8 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import { CssBaseline } from "@material-ui/core";
 
 import ListingIndexContainer from "./ListingIndexContainer";
 import NavBar from "./NavBar";
@@ -10,11 +7,25 @@ import ListingShowContainer from "./ListingShowContainer";
 import NewListingContainer from "./NewListingContainer";
 
 export const App = props => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    fetch("/auth/is_signed_in")
+      .then(response => response.json())
+      .then(body => {
+        if (body.signed_in) {
+          setIsSignedIn(body.signed_in);
+          setUser(body.user);
+        }
+      });
+  }, []);
+
   return (
     <div>
       <BrowserRouter>
         <header>
-          <NavBar />
+          <NavBar isSignedIn={isSignedIn} />
         </header>
         <Switch>
           <Route exact path="/" component={ListingIndexContainer} />

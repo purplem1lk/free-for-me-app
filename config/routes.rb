@@ -13,4 +13,8 @@ Rails.application.routes.draw do
       resources :listings, only: [:index, :show, :create, :update, :edit]
     end
   end
+
+  scope :auth do
+    get 'is_signed_in', to: 'auth#is_signed_in?'
+  end
 end
