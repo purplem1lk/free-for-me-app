@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 import Functions from "../utils/Functions.js";
 
 const SignInForm = props => {
+  let history = useHistory();
   const [credentials, setCredentials] = useState({
     email: "",
     password: ""
@@ -33,9 +36,23 @@ const SignInForm = props => {
         "Content-Type": "application/json"
       }
     })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`;
+          const error = new Error(ErrorMessage);
+          throw error;
+        }
+      })
       .then(response => response.json())
       .then(body => {
-        //to-do
+        if (body.id) {
+          props.getIsSignedIn();
+          history.push("/listings");
+        } else {
+          // todo
+        }
       });
   };
 

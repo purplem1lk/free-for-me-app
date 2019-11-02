@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import AppBar from "@material-ui/core/AppBar";
@@ -123,7 +124,9 @@ const NavBar = props => {
   } else {
     rightHandContent = (
       <div>
-        <Button color="inherit">Log in</Button>
+        <Link to="/login">
+          <Button color="inherit">Log in</Button>
+        </Link>
         <Button color="inherit">Sign up</Button>
       </div>
     );
