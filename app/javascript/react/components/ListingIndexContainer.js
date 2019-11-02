@@ -37,7 +37,7 @@ const ListingIndexContainer = props => {
         title={listing.title}
         description={listing.description}
         postalCode={listing.postal_code}
-        image={listing.listing_photo}
+        photo={listing.photo}
       />
     );
   });

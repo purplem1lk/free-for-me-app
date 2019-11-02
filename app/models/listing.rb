@@ -4,5 +4,5 @@ class Listing < ApplicationRecord
   validates :postal_code, presence: true
 
   belongs_to :user
-  has_many :listing_photos
+  has_many :photos
 end
