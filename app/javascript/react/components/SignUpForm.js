@@ -1,36 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Functions from "../utils/Functions.js";
 
-const SignInForm = props => {
+const SignUpForm = props => {
   let history = useHistory();
-  const [credentials, setCredentials] = useState({
+  const [newCredentials, setNewCredentials] = useState({
+    username: "",
     email: "",
     password: ""
   });
 
   const handleInputChange = event => {
-    setCredentials({
-      ...credentials,
+    setNewCredentials({
+      ...newCredentials,
       [event.currentTarget.name]: event.currentTarget.value
     });
   };
 
-  const attemptLogin = event => {
+  const attemptRegister = event => {
     event.preventDefault();
 
-    const payLoad = {
+    const payload = {
       user: {
-        email: credentials.email,
-        password: credentials.password
+        email: newCredentials.email,
+        uid: newCredentials.email,
+        password: newCredentials.password,
+        password_confirmation: newCredentials.password,
+        username: newCredentials.username,
+        provider: "email"
       },
       authenticity_token: Functions.getMetaContent("csrf-token")
     };
 
-    fetch("/users/sign_in", {
+    fetch("users.json", {
       method: "POST",
-      body: JSON.stringify(payLoad),
+      body: JSON.stringify(payload),
       headers: {
         Accepts: "application/json",
         "Content-Type": "application/json"
@@ -41,7 +46,7 @@ const SignInForm = props => {
           return response;
         } else {
           const errorMessage = `${response.status} (${response.statusText})`;
-          const error = new Error(ErrorMessage);
+          const error = new Error(errorMessage);
           throw error;
         }
       })
@@ -57,31 +62,45 @@ const SignInForm = props => {
   };
 
   return (
-    <form onSubmit={attemptLogin}>
-      <h3>Log In</h3>
+    <form onSubmit={attemptRegister}>
+      <h3>Sign Up</h3>
       <div className="row">
         <label className="small-12 columns">
+          Username:
           <input
-            type="email"
-            name="email"
-            value={credentials.email}
+            type="text"
+            name="username"
+            value={newCredentials.username}
             onChange={handleInputChange}
           />
         </label>
+
         <label className="small-12 columns">
+          Email Address:
+          <input
+            type="text"
+            name="email"
+            value={newCredentials.email}
+            onChange={handleInputChange}
+          />
+        </label>
+
+        <label className="small-12 columns">
+          Password:
           <input
             type="password"
             name="password"
-            value={credentials.password}
+            value={newCredentials.password}
             onChange={handleInputChange}
           />
         </label>
+
         <button className="button" type="submit">
-          Submit credentials
+          Create Account
         </button>
       </div>
     </form>
   );
 };
 
-export default SignInForm;
+export default SignUpForm;

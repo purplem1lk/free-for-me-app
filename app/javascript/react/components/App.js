@@ -5,7 +5,8 @@ import ListingIndexContainer from "./ListingIndexContainer";
 import NavBar from "./NavBar";
 import ListingShowContainer from "./ListingShowContainer";
 import NewListingContainer from "./NewListingContainer";
-import SignInForm from "./SignInForm";
+import LogInForm from "./LogInForm";
+import SignUpForm from "./SignUpForm";
 
 export const App = props => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -39,9 +40,13 @@ export const App = props => {
           <Route
             exact
             path="/login/"
-            render={() => <SignInForm getIsSignedIn={getIsSignedIn} />}
+            render={() => <LogInForm getIsSignedIn={getIsSignedIn} />}
           />
-          <Route exact path="/login/" component={SignInForm} />
+          <Route
+            exact
+            path="/signup"
+            render={() => <SignUpForm getIsSignedIn={getIsSignedIn} />}
+          />
           <Route exact path="/listings" component={ListingIndexContainer} />
           <Route exact path="/listings/new" component={NewListingContainer} />
           <Route exact path="/listings/:id" component={ListingShowContainer} />

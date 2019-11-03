@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/listings/new', to: 'homes#index'
   get 's3/direct_post'
   get '/login', to: 'homes#index'
+  get '/signup', to: 'homes#index'
 
   devise_for :users, defaults: { format: :json }
 
