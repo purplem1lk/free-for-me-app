@@ -7,10 +7,14 @@ import ListingShowContainer from "./ListingShowContainer";
 import NewListingContainer from "./NewListingContainer";
 import LogInForm from "./LogInForm";
 import SignUpForm from "./SignUpForm";
+import ChatsContainer from "./ChatsContainer";
 
 export const App = props => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [user, setUser] = useState({});
+  const [userId, setUserId] = useState(null);
+
+  //Chatkit wnats user IDs as strings. Hold the ID separately as as tring so we can give it to chatkit using state above.
 
   const getIsSignedIn = () => {
     fetch("/auth/is_signed_in")
@@ -19,6 +23,7 @@ export const App = props => {
         if (body.signed_in) {
           setIsSignedIn(body.signed_in);
           setUser(body.user);
+          setUserId(String(body.user.id));
         }
       });
   };
@@ -28,12 +33,12 @@ export const App = props => {
   }, []);
 
   //whenever we do a straight up component, you can't pass the component props so instead of using a componenet, we have to use render in order to render what component we want for the path and give it a prop like for const getIsSignedIn. render uses an anonymous function below.
-
+  // under header, for nav bar below: userId is stringified because that's how chatkit wants it
   return (
     <div>
       <BrowserRouter>
         <header>
-          <NavBar isSignedIn={isSignedIn} />
+          <NavBar isSignedIn={isSignedIn} userId={userId} />
         </header>
         <Switch>
           <Route exact path="/" component={ListingIndexContainer} />
@@ -46,6 +51,11 @@ export const App = props => {
             exact
             path="/signup"
             render={() => <SignUpForm getIsSignedIn={getIsSignedIn} />}
+          />
+          <Route
+            exact
+            path="/chats/:userId/:otherUserId"
+            component={ChatsContainer}
           />
           <Route exact path="/listings" component={ListingIndexContainer} />
           <Route exact path="/listings/new" component={NewListingContainer} />

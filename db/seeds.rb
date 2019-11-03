@@ -20,8 +20,9 @@ User.create(
 
 Listing.create(
   title: "Like New Kitchen Blender",
-  description: "This kitchen blender was given to me as a gift, but has only been used a handful of times. Like new, many parts still in their original wrapping. Looking for a good home!",
+  description: "This kitchen blender was given to me as a gift, but has only been used a handful of times. Like new, many parts still in their original wrapping. Only previously used for fruit/veggie smoothies.",
   postal_code: "02111",
+  photo: "https://images.unsplash.com/photo-1571942788045-dea101c00210?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1101&q=80",
   user_id: 1
 )
 
@@ -29,6 +30,15 @@ Listing.create(
   title: "Toddler Toys",
   description: "Two trash bags full of toddler toys that have been sanitized and not used for a number of years. Toys include lego blocks, picture books, and many dragon plushies. Looking for a good home with kids to enjoy!",
   postal_code: "02119",
+  photo: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1654&q=80",
+  user_id: 1
+)
+
+Listing.create(
+  title: "Extra Halloween Decorations: Outdoor Skeletons",
+  description: "Our family will be moving to a smaller place and won't be able to use these outdoor skeletons for Halloween anymore! Looking to give these to a fun home who celebrates the holiday as much as we do.",
+  postal_code: "02129",
+  photo: "https://images.unsplash.com/photo-1509557965875-b88c97052f0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
   user_id: 1
 )
 

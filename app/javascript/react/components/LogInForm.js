@@ -1,9 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { FormControl, InputLabel } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 import Functions from "../utils/Functions.js";
 
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  textField: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    width: 400
+  },
+  button: {
+    margin: theme.spacing(3)
+  },
+  input: {
+    display: "none"
+  }
+}));
+
 const LogInForm = props => {
+  const classes = useStyles();
   let history = useHistory();
   const [credentials, setCredentials] = useState({
     email: "",
@@ -57,28 +80,50 @@ const LogInForm = props => {
   };
 
   return (
-    <form onSubmit={attemptLogin}>
+    <form
+      className={classes.container}
+      noValidate
+      autoComplete="off"
+      onSubmit={attemptLogin}
+    >
       <h3>Log In</h3>
       <div className="row">
-        <label className="small-12 columns">
-          <input
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Email Address"
+            margin="normal"
+            variant="outlined"
             type="email"
             name="email"
+            className={classes.textField}
             value={credentials.email}
             onChange={handleInputChange}
           />
-        </label>
-        <label className="small-12 columns">
-          <input
+        </div>
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Password"
+            margin="normal"
+            variant="outlined"
             type="password"
             name="password"
+            className={classes.textField}
             value={credentials.password}
             onChange={handleInputChange}
           />
-        </label>
-        <button className="button" type="submit">
-          Submit credentials
-        </button>
+        </div>
+        <div>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            Log In
+          </Button>
+        </div>
       </div>
     </form>
   );

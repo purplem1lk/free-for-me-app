@@ -1,10 +1,32 @@
 import React, { useState, useRef } from "react";
 import { Redirect } from "react-router-dom";
 import { isEmpty } from "lodash";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 import ListingIndexContainer from "./ListingIndexContainer";
 
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(3)
+  },
+  input: {
+    display: "none"
+  },
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 400
+  }
+}));
+
 const NewListingContainer = props => {
+  const classes = useStyles();
   const fileInput = useRef();
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState({});
@@ -128,35 +150,47 @@ const NewListingContainer = props => {
           <form className="small-12 medium-9 columns" onSubmit={postNewListing}>
             <h3 className="text-center form-title">New Listing Form</h3>
             <h5 className="text-center">{errors.user}</h5>
-            <label className="small-12 columns">
-              Name: {errors.title}
-              <input
+            <div>
+              <TextField
+                id="outlined-based"
+                label="Title"
+                margin="normal"
+                variant="outlined"
                 type="text"
                 name="title"
+                className={classes.textField}
                 value={newListing.title}
                 onChange={handleInputChange}
               />
-            </label>
+            </div>
 
-            <label className="small-12 columns">
-              Description: {errors.description}
-              <input
+            <div>
+              <TextField
+                id="outlined-based"
+                label="Description"
+                margin="normal"
+                variant="outlined"
                 type="text"
                 name="description"
+                className={classes.textField}
                 value={newListing.description}
                 onChange={handleInputChange}
               />
-            </label>
+            </div>
 
-            <label className="small-12 medium-6 large-4 columns">
-              Postal Code: {errors.postal_code}
-              <input
+            <div>
+              <TextField
+                id="outlined-based"
+                label="Postal Code"
+                margin="normal"
+                variant="outlined"
                 type="text"
                 name="postal_code"
-                value={newListing.postal_code}
+                className={classes.textField}
+                value={newListing.postalCode}
                 onChange={handleInputChange}
               />
-            </label>
+            </div>
 
             <label className="small-12 columns">
               Select photo:

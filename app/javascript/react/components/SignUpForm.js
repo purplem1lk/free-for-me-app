@@ -1,9 +1,31 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 import Functions from "../utils/Functions.js";
 
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(3)
+  },
+  input: {
+    display: "none"
+  },
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 400
+  }
+}));
+
 const SignUpForm = props => {
+  const classes = useStyles();
   let history = useHistory();
   const [newCredentials, setNewCredentials] = useState({
     username: "",
@@ -37,7 +59,7 @@ const SignUpForm = props => {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
-        Accepts: "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json"
       }
     })
@@ -53,8 +75,21 @@ const SignUpForm = props => {
       .then(response => response.json())
       .then(body => {
         if (body.id) {
-          props.getIsSignedIn();
-          history.push("/listings");
+          // user successfully signed in, also add the mto chatkit.
+          fetch("/chatkit/create_user", {
+            method: "POST",
+            body: JSON.stringify({
+              id: `${body.id}`,
+              username: newCredentials.username
+            }),
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            }
+          }).then(() => {
+            props.getIsSignedIn();
+            history.push("/listings");
+          });
         } else {
           // todo
         }
@@ -62,38 +97,55 @@ const SignUpForm = props => {
   };
 
   return (
-    <form onSubmit={attemptRegister}>
+    <form
+      className={classes.container}
+      noValidate
+      autoComplete="off"
+      onSubmit={attemptRegister}
+    >
       <h3>Sign Up</h3>
       <div className="row">
-        <label className="small-12 columns">
-          Username:
-          <input
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Username"
+            margin="normal"
+            variant="outlined"
             type="text"
             name="username"
+            className={classes.textField}
             value={newCredentials.username}
             onChange={handleInputChange}
           />
-        </label>
+        </div>
 
-        <label className="small-12 columns">
-          Email Address:
-          <input
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Email Address"
+            margin="normal"
+            variant="outlined"
             type="text"
             name="email"
+            className={classes.textField}
             value={newCredentials.email}
             onChange={handleInputChange}
           />
-        </label>
+        </div>
 
-        <label className="small-12 columns">
-          Password:
-          <input
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Password"
+            margin="normal"
+            variant="outlined"
             type="password"
             name="password"
+            className={classes.textField}
             value={newCredentials.password}
             onChange={handleInputChange}
           />
-        </label>
+        </div>
 
         <button className="button" type="submit">
           Create Account

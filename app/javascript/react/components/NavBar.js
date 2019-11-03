@@ -1,19 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { fade, makeStyles } from "@material-ui/core/styles";
+import { ChatkitProvider, TokenProvider } from "@pusher/chatkit-client-react";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import AppBar from "@material-ui/core/AppBar";
-import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
-import MailIcon from "@material-ui/icons/Mail";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import SearchIcon from "@material-ui/icons/Search";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+
 import Functions from "../utils/Functions";
+import MessagesButton from "./MessagesButton";
+
+const instanceLocator = "v1:us1:ac944341-a321-4e72-968c-e2e07aca10ac";
+const tokenProvider = new TokenProvider({
+  url:
+    "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/ac944341-a321-4e72-968c-e2e07aca10ac/token"
+});
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -127,14 +134,17 @@ const NavBar = props => {
   );
 
   let rightHandContent = "";
-  if (props.isSignedIn) {
+  // userId cannot be null in ChatkitProvider. can ONLY render this when we have a userId
+  if (props.isSignedIn && props.userId) {
     rightHandContent = (
       <div className={classes.sectionDesktop}>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
+        <ChatkitProvider
+          instanceLocator={instanceLocator}
+          tokenProvider={tokenProvider}
+          userId={props.userId}
+        >
+          <MessagesButton userId={props.userId} />
+        </ChatkitProvider>
         <IconButton
           edge="end"
           aria-label="account of current user"

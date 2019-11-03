@@ -66,7 +66,7 @@ const ListingIndexContainer = props => {
         description={listing.description}
         postalCode={listing.postal_code}
         photo={listing.photo}
-        createdAAt={listing.created_at}
+        createdAt={listing.created_at}
       />
     );
   });
