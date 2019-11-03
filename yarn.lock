@@ -979,6 +979,20 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@pusher/chatkit-client-react@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@pusher/chatkit-client-react/-/chatkit-client-react-0.1.2.tgz#c54305bb7cea2519c621632524b7e7a8b387b5ff"
+  integrity sha512-YpH+eLuIVM6AtTtV1UKmIMXpTqw13HBASthCu+Y6dfHCAElXOafypFIjMMdpTg7EybPkQmB1iNtj2Qow17UUBw==
+  dependencies:
+    "@pusher/chatkit-client" "^1.13.0"
+    prop-types "^15.7.2"
+    react "^16.9.0"
+
+"@pusher/chatkit-client@^1.13.0":
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/@pusher/chatkit-client/-/chatkit-client-1.13.2.tgz#144dfc01c51386bf843e880927b286f73e15290f"
+  integrity sha512-XJl63igmHnhLYcK82VK4+y+VIAuFlG/LBh2PjqUFv4tsOEAxzSLZ88scO/3vPD+bF2DxQCe/zJjzShbnSjGC9w==
+
 "@rails/webpacker@3.5":
   version "3.5.5"
   resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-3.5.5.tgz#8911c66bcefc8bc6b91270e92f0d39e3c2d43116"
@@ -9678,6 +9692,11 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.11.0.tgz#b85dfecd48ad1ce469ff558a882ca8e8313928fa"
   integrity sha512-gbBVYR2p8mnriqAwWx9LbuUrShnAuSCNnuPGyc7GJrMVQtPDAh8iLpv7FRuMPFb56KkaVZIYSz1PrjI9q0QPCw==
 
+react-moment@^0.9.6:
+  version "0.9.6"
+  resolved "https://registry.yarnpkg.com/react-moment/-/react-moment-0.9.6.tgz#6b359a48205a52196408303e30bc982cd46d0bee"
+  integrity sha512-GAnd5NRIpGjDqLoGahJCkiCEQS1d8+dIZbIfPuy/eQ0O5Rio43fEkj5G+qrKbZCQY55fiNafpHpuirVIHqPoSg==
+
 react-router-dom@5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.1.0.tgz#48ad018d71fb7835212587e4c90bd2e3d2417e31"
@@ -9725,6 +9744,15 @@ react-transition-group@^4.3.0:
     "@babel/runtime" "^7.5.5"
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
+    prop-types "^15.6.2"
+
+react@^16.9.0:
+  version "16.11.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.11.0.tgz#d294545fe62299ccee83363599bf904e4a07fdbb"
+  integrity sha512-M5Y8yITaLmU0ynd0r1Yvfq98Rmll6q8AxaEe88c8e7LxO8fZ2cNgmFt0aGAS9wzf1Ao32NKXtCl+/tVVtkxq6g==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
     prop-types "^15.6.2"
 
 react@~16.8.0:

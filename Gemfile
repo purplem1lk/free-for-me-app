@@ -54,7 +54,7 @@ gem 'devise'
 gem 'foundation-rails', '~> 6.5'
 gem 'webpacker', '~> 3.3'
 gem 'carrierwave', '~> 2.0'
-gem 'fog'
-gem 'fog-aws'
 gem 'rack-cors'
 gem 'aws-sdk-s3'
+
+gem "pusher-chatkit-server", "~> 1.6"

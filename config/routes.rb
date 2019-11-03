@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   get '/listings', to: 'homes#index'
   get '/listings/:id', to: 'homes#index'
   get '/listings/new', to: 'homes#index'
-  get 's3/direct_post'
+
   get '/login', to: 'homes#index'
   get '/signup', to: 'homes#index'
+  get 's3/direct_post'
+  get '/chats/:userId/:otherUserId', to: 'homes#index'
+  post 'chatkit/create_user'
+
 
   devise_for :users, defaults: { format: :json }
 
