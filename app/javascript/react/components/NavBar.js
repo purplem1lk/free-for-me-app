@@ -13,6 +13,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import SearchIcon from "@material-ui/icons/Search";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import Functions from "../utils/Functions";
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -67,6 +68,13 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("md")]: {
       display: "flex"
     }
+  },
+  whiteText: {
+    color: "white",
+    "&:hover": {
+      color: "white",
+      textDecoration: "none"
+    }
   }
 }));
 
@@ -84,6 +92,23 @@ const NavBar = props => {
     setAnchorEl(null);
   };
 
+  const handleLogOut = () => {
+    const payload = {
+      authenticity_token: Functions.getMetaContent("csrf-token")
+    };
+
+    fetch("/users/sign_out.json", {
+      method: "DELETE",
+      body: JSON.stringify(payload),
+      headers: {
+        Accepts: "application/json",
+        "Content-Type": "application/jsonß"
+      }
+    }).then(response => {
+      location.reload();
+    });
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -97,6 +122,7 @@ const NavBar = props => {
     >
       <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
       <MenuItem onClick={handleMenuClose}>My Submissions</MenuItem>
+      <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
     </Menu>
   );
 
@@ -124,10 +150,12 @@ const NavBar = props => {
   } else {
     rightHandContent = (
       <div>
-        <Link to="/login">
-          <Button color="inherit">Log in</Button>
-        </Link>
-        <Button color="inherit">Sign up</Button>
+        <Button href="/login" className={classes.whiteText}>
+          Log in
+        </Button>
+        <Button href="/signup" className={classes.whiteText}>
+          Sign up
+        </Button>
       </div>
     );
   }
@@ -137,7 +165,9 @@ const NavBar = props => {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            Free For Me
+            <Link to="/" className={classes.whiteText}>
+              Free For Me
+            </Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
