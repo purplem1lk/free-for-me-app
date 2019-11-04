@@ -104,8 +104,8 @@ const SignUpForm = props => {
       onSubmit={attemptRegister}
     >
       <h3>Sign Up</h3>
-      <div className="row">
-        <div>
+      <div className="row small-12 columns">
+        <div className="row small-12 columns">
           <TextField
             id="outlined-basic"
             label="Username"
@@ -119,7 +119,7 @@ const SignUpForm = props => {
           />
         </div>
 
-        <div>
+        <div className="row small-12 columns">
           <TextField
             id="outlined-basic"
             label="Email Address"
@@ -133,7 +133,7 @@ const SignUpForm = props => {
           />
         </div>
 
-        <div>
+        <div className="row small-12 columns">
           <TextField
             id="outlined-basic"
             label="Password"
@@ -147,9 +147,16 @@ const SignUpForm = props => {
           />
         </div>
 
-        <button className="button" type="submit">
-          Create Account
-        </button>
+        <div>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            Create Account
+          </Button>
+        </div>
       </div>
     </form>
   );

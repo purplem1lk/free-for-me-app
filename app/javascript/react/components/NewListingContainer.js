@@ -148,7 +148,7 @@ const NewListingContainer = props => {
       <div className="form-page">
         <div className="row">
           <form className="small-12 medium-9 columns" onSubmit={postNewListing}>
-            <h3 className="text-center form-title">New Listing Form</h3>
+            <h3 className="form-title">New Listing Form</h3>
             <h5 className="text-center">{errors.user}</h5>
             <div>
               <TextField
@@ -197,11 +197,23 @@ const NewListingContainer = props => {
               <input type="file" name="photo" ref={fileInput} />
             </label>
 
-            <div className="text-center">
-              <input className="button" type="submit" value="Add Listing" />
-              <button className="button" onClick={clearForm}>
+            <div className="row">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                Add Listing
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={clearForm}
+              >
                 Clear
-              </button>
+              </Button>
             </div>
           </form>
         </div>

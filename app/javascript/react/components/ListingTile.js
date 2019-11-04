@@ -32,7 +32,7 @@ const ListingTile = props => {
   }
 
   const formatDate = inputDate => {
-    return moment(inputDate).format("MMM Do YYY");
+    return moment(inputDate).format("MMM Do YYYY");
   };
 
   return (
