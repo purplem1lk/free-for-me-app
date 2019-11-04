@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { isEmpty } from "lodash";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 const NewListingContainer = props => {
   const classes = useStyles();
   const fileInput = useRef();
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const history = useHistory();
   const [errors, setErrors] = useState({});
   const [newListing, setNewListing] = useState({
     title: "",
@@ -113,7 +113,7 @@ const NewListingContainer = props => {
         .then(body => {
           if (body.id) {
             setNewListing(newListing);
-            setShouldRedirect(true);
+            history.push(`/listings/${body.id}`);
           } else {
             setErrors(body);
           }
@@ -121,10 +121,6 @@ const NewListingContainer = props => {
         .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
   };
-
-  if (shouldRedirect) {
-    return <Redirect to="/listings" />;
-  }
 
   const handleInputChange = event => {
     setNewListing({

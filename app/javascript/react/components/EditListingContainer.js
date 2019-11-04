@@ -1,7 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(3)
+  },
+  input: {
+    display: "none"
+  },
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 400
+  }
+}));
 
 const EditListingContainer = props => {
+  let classes = useStyles();
   let history = useHistory();
   const [errors, setErrors] = useState({});
   const [editListing, setEditListing] = useState({});
@@ -87,15 +108,25 @@ const EditListingContainer = props => {
           />
         </label>
 
-        <div>
-          <input className="button" type="submit" value="Update Listing" />
-        </div>
-      </form>
-      <div className="cancel-button">
-        <button className="button" onClick={props.resetPageFromCancel}>
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          className={classes.button}
+        >
+          Update Listing
+        </Button>
+
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          className={classes.button}
+          onClick={props.resetPageFromCancel}
+        >
           Cancel
-        </button>
-      </div>
+        </Button>
+      </form>
       <hr />
     </div>
   );
