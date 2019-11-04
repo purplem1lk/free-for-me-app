@@ -43,23 +43,26 @@ Listing.create(
 )
 
 Listing.create(
-  title: "Office Chair - Lightly Used",
+  title: "Antique Office Chair",
   description: "I have an extra office chair that was used a few times in my home office. I will be moving soon and do not plan to take this item with me. Must pick up from me directly, please!",
   postal_code: "02129",
+  photo: "https://images.unsplash.com/photo-1561345041-2a2dfbb4926e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
   user_id: 2
 )
 
 Listing.create(
-  title: "8 Foot Ladder with Grips",
+  title: "8 Foot Ladder",
   description: "I've acquired a new ladder so I will no be needing my older 8 foot ladder. This has grips for easy navigation, even after fairly regular use. Great for indoor or outdoor and stores great in a basement or garage. Looking to get rid of asap.",
   postal_code: "02205",
+  photo: "https://images.unsplash.com/photo-1518805918039-7c14c2868566?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
   user_id: 2
 )
 
 Listing.create(
-  title: "Old Leather Couch",
-  description: "Looking to get rid of an older leather couch for some new furniture. Size of a loveseat with minor scratches on the seats. Comes from a smoke-free, pet-free home.",
+  title: "So Many Succulents!",
+  description: "Looking to rehome these cute succulents. Used them for a party and unable to house all of them since I'll be traveling soon. Looking for great plant parents to take these babies home. Thanks!",
   postal_code: "02284",
+  photo: "https://images.unsplash.com/photo-1551893665-f843f600794e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
   user_id: 2
 )
 
@@ -67,5 +70,22 @@ Listing.create(
   title: "SO MUCH YARN",
   description: "Decluttering my grandma's house and found boxes and boxes of unused yarn. Hoping to give to a good home or crochet club that can re-use these items and find happy homes for them. Please bring your own bags/boxes, as the current ones have dirty bottoms. Please reach out if you have any questions, thanks!!",
   postal_code: "02293",
+  photo: "https://images.unsplash.com/photo-1544042591-a6c92af2b7d0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
   user_id: 2
+)
+
+Listing.create(
+  title: "Bookworm Dream! Lots of books.",
+  description: "Lots of old books passed down from my family. Decluttering and looking to give these away - Anything remaining will be donated to the public library. Lots of mystery and science fiction books, for those who are interested.",
+  postal_code: "02110",
+  photo: "https://images.unsplash.com/photo-1547057981-d08930168f03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
+  user_id: 2
+)
+
+Listing.create(
+  title: "Clear Glass Coffee Filter - Lightly Used",
+  description: "Clear glass coffee filter that was used maybe a handful of times. Received a full blown espresso machine as a gift, so looking to give this to another coffee enthusiast.",
+  postal_code: "02111",
+  photo: "https://images.unsplash.com/photo-1439242088854-0c76045f4124?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
+  user_id: 1
 )

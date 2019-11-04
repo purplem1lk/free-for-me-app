@@ -37,6 +37,16 @@ function Chat(props) {
     textContent: m.parts[0].payload.content
   }));
 
+  // is there an array of messages at all && is there a length to the messages array
+  if (props.chatkit.messages && props.chatkit.messages.length) {
+    const lastMessageIndex = props.chatkit.messagse.length - 1;
+    // tell chatkit we read up to the last message in the conversation (lastMessageIndex). setReadCursor is given from chatkit and wants to know what room the messages are from and what message is the last one that was opened
+    props.chatkit.setReadCursor({
+      roomId: props.chatkit.messages[lastMessageIndex].roomId,
+      messageId: props.chatkit.messages[lastMessageIndex].id
+    });
+  }
+
   return (
     <div className="Chat">
       <div className="Chat__titlebar">
