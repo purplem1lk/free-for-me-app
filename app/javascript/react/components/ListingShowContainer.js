@@ -1,9 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 
 import EditListingContainer from "./EditListingContainer";
 
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(3)
+  },
+  input: {
+    display: "none"
+  },
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 400
+  }
+}));
+
 const ListingShowContainer = props => {
+  let classes = useStyles();
   let history = useHistory();
   const [listing, setListing] = useState({});
 
@@ -51,13 +73,25 @@ const ListingShowContainer = props => {
 
   return (
     <div>
-      <h3>{listing.title}</h3>
-      <p>{listing.description}</p>
-      <img src={listing.photo} />
-      <button className="button" onClick={attemptStartConversation}>
-        Questions about this listing? Ask here!
-      </button>
+      <div className="columns small-12 medium-6 show-block">
+        <h3>{listing.title}</h3>
+        <p>{listing.description}</p>
+        <p>Postal Code: {listing.postal_code}</p>
+        <Box width="50%" p={0.5} my={0.5}>
+          <img src={listing.photo} />
+        </Box>
+      </div>
+
       <div className="columns small-12 medium-6 list-block">
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          className={classes.button}
+          onClick={attemptStartConversation}
+        >
+          Questions about this listing? Ask here!
+        </Button>
         <div>
           <EditListingContainer
             id={listingId}

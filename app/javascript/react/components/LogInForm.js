@@ -9,16 +9,23 @@ import Functions from "../utils/Functions.js";
 
 const useStyles = makeStyles(theme => ({
   container: {
-    display: "flex",
-    flexWrap: "wrap"
+    marginLeft: "25%",
+    marginRight: "25%"
+  },
+  fullWidthTextInput: {
+    width: "100%"
+  },
+  topRow: {
+    marginTop: "1.5rem"
+  },
+  floatRightButton: {
+    float: "right",
+    marginTop: "1rem"
   },
   textField: {
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
     width: 400
-  },
-  button: {
-    margin: theme.spacing(3)
   },
   input: {
     display: "none"
@@ -86,40 +93,42 @@ const LogInForm = props => {
       autoComplete="off"
       onSubmit={attemptLogin}
     >
-      <h3>Log In</h3>
       <div className="row">
-        <div>
+        <div className="columns small-12">
+          <h3 className={classes.topRow}>Log In</h3>
           <TextField
-            id="outlined-basic"
             label="Email Address"
             margin="normal"
-            variant="outlined"
+            variant="filled"
             type="email"
             name="email"
-            className={classes.textField}
+            className={classes.fullWidthTextInput}
             value={credentials.email}
             onChange={handleInputChange}
           />
         </div>
-        <div>
+      </div>
+      <div className="row">
+        <div className="columns small-12">
           <TextField
-            id="outlined-basic"
             label="Password"
             margin="normal"
-            variant="outlined"
+            variant="filled"
             type="password"
             name="password"
-            className={classes.textField}
+            className={classes.fullWidthTextInput}
             value={credentials.password}
             onChange={handleInputChange}
           />
         </div>
-        <div>
+      </div>
+      <div className="row">
+        <div className="columns small-12">
           <Button
             type="submit"
             variant="contained"
             color="primary"
-            className={classes.button}
+            className={classes.floatRightButton}
           >
             Log In
           </Button>

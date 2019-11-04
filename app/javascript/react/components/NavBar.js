@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useRef } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import { ChatkitProvider, TokenProvider } from "@pusher/chatkit-client-react";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -87,6 +87,7 @@ const useStyles = makeStyles(theme => ({
 
 const NavBar = props => {
   const classes = useStyles();
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -112,6 +113,7 @@ const NavBar = props => {
         "Content-Type": "application/jsonß"
       }
     }).then(response => {
+      history.push("/listings");
       location.reload();
     });
   };
@@ -127,7 +129,6 @@ const NavBar = props => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
       <MenuItem onClick={handleMenuClose}>My Submissions</MenuItem>
       <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
     </Menu>
