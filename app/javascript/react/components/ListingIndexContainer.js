@@ -28,6 +28,10 @@ const useStyles = makeStyles(theme => ({
   },
   divider: {
     marginBottom: "1rem"
+  },
+  container: {
+    marginLeft: "25%",
+    marginRight: "25%"
   }
 }));
 
@@ -91,12 +95,16 @@ const ListingIndexContainer = props => {
   return (
     <div className="index-background">
       <div className="index-page">
-        <Typography variant="h4" gutterBottom>
-          Active Listings in Boston
-        </Typography>
-        <Divider className={classes.divider} />
-        {button}
+        <div className="row">
+          <div className="columns small-12">
+            <Typography variant="h4" gutterBottom>
+              Active Listings in Boston
+            </Typography>
+            <Divider className={classes.divider} />
+          </div>
+        </div>
         <div className="row">{listingTiles}</div>
+        {button}
       </div>
     </div>
   );

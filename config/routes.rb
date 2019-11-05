@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/listings', to: 'homes#index'
   get '/listings/:id', to: 'homes#index'
   get '/listings/new', to: 'homes#index'
+  get '/listings/:id/edit', to: 'homes#index'
 
   get '/login', to: 'homes#index'
   get '/signup', to: 'homes#index'

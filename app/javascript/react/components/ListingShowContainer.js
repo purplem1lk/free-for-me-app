@@ -3,24 +3,34 @@ import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import ChatIcon from "@material-ui/icons/Chat";
+import EditIcon from "@material-ui/icons/Edit";
 
 import EditListingContainer from "./EditListingContainer";
 
 const useStyles = makeStyles(theme => ({
   button: {
-    margin: theme.spacing(3)
+    float: "right"
   },
   input: {
     display: "none"
   },
+  buttonIcon: {
+    marginRight: ".5rem"
+  },
   container: {
-    display: "flex",
-    flexWrap: "wrap"
+    marginLeft: "15%",
+    marginRight: "15%",
+    marginTop: "1rem"
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 400
+  },
+
+  maxHeight: {
+    maxHeight: "400px"
   }
 }));
 
@@ -29,7 +39,7 @@ const ListingShowContainer = props => {
   let history = useHistory();
   const [listing, setListing] = useState({});
 
-  let listingId = props.match.params.id;
+  let listingId = Number(window.location.pathname.split("/")[2]);
 
   useEffect(() => {
     fetch(`/api/v1/listings/${listingId}`, {
@@ -71,34 +81,66 @@ const ListingShowContainer = props => {
     }
   };
 
+  const onEditListing = event => {
+    history.push(`/listings/${listingId}/edit`);
+  };
+
+  let actionButton = "";
+  if (props.user && props.user.id === listing.user_id) {
+    actionButton = (
+      <Button
+        variant="contained"
+        color="primary"
+        type="submit"
+        className={classes.button}
+        onClick={onEditListing}
+      >
+        <EditIcon className={classes.buttonIcon} />
+        Edit Listing
+      </Button>
+    );
+  } else if (props.user && props.user.id !== listing.user_id) {
+    actionButton = (
+      <Button
+        variant="contained"
+        color="primary"
+        type="submit"
+        className={classes.button}
+        onClick={attemptStartConversation}
+      >
+        <ChatIcon className={classes.buttonIcon} />
+        Chat with owner
+      </Button>
+    );
+  }
+
   return (
-    <div>
-      <div className="columns small-12 medium-6 show-block">
-        <h3>{listing.title}</h3>
-        <p>{listing.description}</p>
-        <p>Postal Code: {listing.postal_code}</p>
-        <Box width="50%" p={0.5} my={0.5}>
-          <img src={listing.photo} />
-        </Box>
+    <div className={classes.container}>
+      <div className="row">
+        <div className="columns small-6">
+          <h3>{listing.title}</h3>
+        </div>
+
+        <div className="columns small-6">{actionButton}</div>
       </div>
 
-      <div className="columns small-12 medium-6 list-block">
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          className={classes.button}
-          onClick={attemptStartConversation}
-        >
-          Questions about this listing? Ask here!
-        </Button>
-        <div>
-          <EditListingContainer
-            id={listingId}
-            title={listing.title}
-            description={listing.description}
-            postalCode={listing.postal_code}
-          />
+      <div className="row">
+        <div className="columns small-6">
+          <p>Postal Code: {listing.postal_code}</p>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="columns small-12">
+          <Box width="50%" p={0.5} my={0.5}>
+            <img className={classes.maxHeight} src={listing.photo} />
+          </Box>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="columns small-12">
+          <p>{listing.description}</p>
         </div>
       </div>
     </div>

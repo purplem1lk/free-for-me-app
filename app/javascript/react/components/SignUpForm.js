@@ -7,20 +7,22 @@ import TextField from "@material-ui/core/TextField";
 import Functions from "../utils/Functions.js";
 
 const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(3)
+  floatRightButton: {
+    float: "right",
+    marginTop: "1rem"
   },
   input: {
     display: "none"
   },
   container: {
-    display: "flex",
-    flexWrap: "wrap"
+    marginLeft: "25%",
+    marginRight: "25%"
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 400
+  fullWidthTextInput: {
+    width: "100%"
+  },
+  topRow: {
+    marginTop: "1.5rem"
   }
 }));
 
@@ -97,54 +99,60 @@ const SignUpForm = props => {
   };
 
   return (
-    <form
-      className={classes.container}
-      noValidate
-      autoComplete="off"
-      onSubmit={attemptRegister}
-    >
-      <h3>Sign Up</h3>
-      <div className="row small-12 columns">
-        <div className="row small-12 columns">
-          <TextField
-            id="outlined-basic"
-            label="Username"
-            margin="normal"
-            variant="outlined"
-            type="text"
-            name="username"
-            className={classes.textField}
-            value={newCredentials.username}
-            onChange={handleInputChange}
-          />
+    <div>
+      <form
+        className={classes.container}
+        noValidate
+        autoComplete="off"
+        onSubmit={attemptRegister}
+      >
+        <div className="row">
+          <div className="columns small-12">
+            <h3 className={classes.topRow}>Sign Up</h3>
+            <TextField
+              id="outlined-basic"
+              label="Username"
+              margin="normal"
+              variant="filled"
+              type="text"
+              name="username"
+              className={classes.fullWidthTextInput}
+              value={newCredentials.username}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
 
-        <div className="row small-12 columns">
-          <TextField
-            id="outlined-basic"
-            label="Email Address"
-            margin="normal"
-            variant="outlined"
-            type="text"
-            name="email"
-            className={classes.textField}
-            value={newCredentials.email}
-            onChange={handleInputChange}
-          />
+        <div className="row">
+          <div className="columns small-12">
+            <TextField
+              id="outlined-basic"
+              label="Email Address"
+              margin="normal"
+              variant="filled"
+              type="text"
+              name="email"
+              className={classes.fullWidthTextInput}
+              value={newCredentials.email}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
 
-        <div className="row small-12 columns">
-          <TextField
-            id="outlined-basic"
-            label="Password"
-            margin="normal"
-            variant="outlined"
-            type="password"
-            name="password"
-            className={classes.textField}
-            value={newCredentials.password}
-            onChange={handleInputChange}
-          />
+        <div className="row">
+          <div className="columns small-12">
+            <TextField
+              id="outlined-basic"
+              label="Password"
+              margin="normal"
+              variant="filled"
+              type="password"
+              name="password"
+              className={classes.fullWidthTextInput}
+              value={newCredentials.password}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
 
         <div>
@@ -152,13 +160,13 @@ const SignUpForm = props => {
             type="submit"
             variant="contained"
             color="primary"
-            className={classes.button}
+            className={classes.floatRightButton}
           >
             Create Account
           </Button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 
