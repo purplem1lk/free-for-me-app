@@ -21,14 +21,6 @@ const useStyles = makeStyles(theme => ({
   floatRightButton: {
     float: "right",
     marginTop: "1rem"
-  },
-  textField: {
-    marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3),
-    width: 400
-  },
-  input: {
-    display: "none"
   }
 }));
 
@@ -87,54 +79,56 @@ const LogInForm = props => {
   };
 
   return (
-    <form
-      className={classes.container}
-      noValidate
-      autoComplete="off"
-      onSubmit={attemptLogin}
-    >
-      <div className="row">
-        <div className="columns small-12">
-          <h3 className={classes.topRow}>Log In</h3>
-          <TextField
-            label="Email Address"
-            margin="normal"
-            variant="filled"
-            type="email"
-            name="email"
-            className={classes.fullWidthTextInput}
-            value={credentials.email}
-            onChange={handleInputChange}
-          />
+    <div>
+      <form
+        className={classes.container}
+        noValidate
+        autoComplete="off"
+        onSubmit={attemptLogin}
+      >
+        <div className="row">
+          <div className="columns small-12">
+            <h3 className={classes.topRow}>Log In</h3>
+            <TextField
+              label="Email Address"
+              margin="normal"
+              variant="filled"
+              type="email"
+              name="email"
+              className={classes.fullWidthTextInput}
+              value={credentials.email}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="columns small-12">
-          <TextField
-            label="Password"
-            margin="normal"
-            variant="filled"
-            type="password"
-            name="password"
-            className={classes.fullWidthTextInput}
-            value={credentials.password}
-            onChange={handleInputChange}
-          />
+        <div className="row">
+          <div className="columns small-12">
+            <TextField
+              label="Password"
+              margin="normal"
+              variant="filled"
+              type="password"
+              name="password"
+              className={classes.fullWidthTextInput}
+              value={credentials.password}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="columns small-12">
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.floatRightButton}
-          >
-            Log In
-          </Button>
+        <div className="row">
+          <div className="columns small-12">
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.floatRightButton}
+            >
+              Log In
+            </Button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

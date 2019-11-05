@@ -8,13 +8,14 @@ import NewListingContainer from "./NewListingContainer";
 import LogInForm from "./LogInForm";
 import SignUpForm from "./SignUpForm";
 import ChatsContainer from "./ChatsContainer";
+import EditListingContainer from "./EditListingContainer";
 
 export const App = props => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [user, setUser] = useState({});
   const [userId, setUserId] = useState(null);
 
-  //Chatkit wnats user IDs as strings. Hold the ID separately as as tring so we can give it to chatkit using state above.
+  //Chatkit wants user IDs as strings. Hold the ID separately as as tring so we can give it to chatkit using state above.
 
   const getIsSignedIn = () => {
     fetch("/auth/is_signed_in")
@@ -59,7 +60,16 @@ export const App = props => {
           />
           <Route exact path="/listings" component={ListingIndexContainer} />
           <Route exact path="/listings/new" component={NewListingContainer} />
-          <Route exact path="/listings/:id" component={ListingShowContainer} />
+          <Route
+            exact
+            path="/listings/:id"
+            render={() => <ListingShowContainer user={user} />}
+          />
+          <Route
+            exact
+            path="/listings/:id/edit"
+            component={EditListingContainer}
+          />
         </Switch>
       </BrowserRouter>
     </div>
