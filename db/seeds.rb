@@ -5,8 +5,8 @@ User.create(
 )
 
 User.create(
-  username: "testaccount",
-  email: "test@test.com",
+  username: "kencharette",
+  email: "ken@test.com",
   password: "password"
 )
 
