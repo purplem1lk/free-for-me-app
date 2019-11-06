@@ -129,7 +129,7 @@ const NavBar = props => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>My Submissions</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My Listings</MenuItem>
       <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
     </Menu>
   );
@@ -185,6 +185,7 @@ const NavBar = props => {
               <SearchIcon />
             </div>
             <InputBase
+              type="text"
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,

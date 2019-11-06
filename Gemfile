@@ -57,3 +57,5 @@ gem 'rack-cors'
 gem 'aws-sdk-s3'
 
 gem "pusher-chatkit-server", "~> 1.6"
+
+gem "pg_search", "~> 2.3"
