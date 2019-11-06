@@ -151,7 +151,7 @@ const NewListingContainer = props => {
                 id="outlined-based"
                 label="Title"
                 margin="normal"
-                variant="outlined"
+                variant="filled"
                 type="text"
                 name="title"
                 className={classes.textField}
@@ -165,7 +165,7 @@ const NewListingContainer = props => {
                 id="outlined-based"
                 label="Description"
                 margin="normal"
-                variant="outlined"
+                variant="filled"
                 type="text"
                 name="description"
                 className={classes.textField}
@@ -179,7 +179,7 @@ const NewListingContainer = props => {
                 id="outlined-based"
                 label="Postal Code"
                 margin="normal"
-                variant="outlined"
+                variant="filled"
                 type="text"
                 name="postal_code"
                 className={classes.textField}
