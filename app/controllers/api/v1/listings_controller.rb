@@ -4,7 +4,11 @@ class Api::V1::ListingsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
   def index
-    render json: { listings: Listing.all, user: user_signed_in? }
+    if params[:term]
+      render json: { listings: Listing.search_by_listing_title(params[:term]) }
+    else
+      render json: { listings: Listing.all, user: user_signed_in? }
+    end
   end
 
   def show

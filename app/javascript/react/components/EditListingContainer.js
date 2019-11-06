@@ -99,6 +99,10 @@ const EditListingContainer = props => {
     });
   };
 
+  const cancelButtonToListings = event => {
+    history.push(`/listings`);
+  };
+
   return (
     <div>
       <form
@@ -157,7 +161,7 @@ const EditListingContainer = props => {
           <div className="row">
             <div className="columns small-12">
               <Button
-                onClick={props.resetPageFromCancel}
+                onClick={cancelButtonToListings}
                 className={classes.buttonMargin}
               >
                 Cancel
