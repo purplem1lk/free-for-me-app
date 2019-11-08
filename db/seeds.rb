@@ -5,8 +5,8 @@ User.create(
 )
 
 User.create(
-  username: "testaccount",
-  email: "test@test.com",
+  username: "kencharette",
+  email: "ken@test.com",
   password: "password"
 )
 
@@ -134,5 +134,21 @@ Listing.create(
   description: "Giving away this wooden garment rack since it doesn't fit the decor of our house anymore. Was mainly used as a prop for photo shoots so there's been minimal use on this. Minor scratches, but nothing from heavy usage. Much heavier than it looks so make sure to bring strong hands and a big truck!",
   postal_code: "02111",
   photo: "https://images.unsplash.com/photo-1501127122-f385ca6ddd9d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+  user_id: 3
+)
+
+Listing.create(
+  title: "Lawn Chairs Be Gone!",
+  description: "Red and white striped lawn chairs available for pick-up. Older furniture that my husband I would like to freecycle since we are getting new outdoor furniture delivered. Would love to rehome soon so please contact us for any questions or information!",
+  postal_code: "02205",
+  photo: "https://images.unsplash.com/photo-1562864758-143c0cc8b5a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1654&q=80",
+  user_id: 2
+)
+
+Listing.create(
+  title: "Vinyl Records Available",
+  description: "Decluttering my home and wanting to get rid of some older vinyl records I've held onto. Not interested in keeping them anymore - Available to meet up in a public place or can deliver to you, if you cannot come to pick up. Please note the picture only shows a small portion of my collection - I have about six other boxes of vinyl records available. Would prefer to have someone take all of them at once, but you can message me with any questions. Thanks.",
+  postal_code: "02884",
+  photo: "https://images.unsplash.com/photo-1498145645178-ab2c7cebc433?ixlib=rb-1.2.1&auto=format&fit=crop&w=1250&q=80",
   user_id: 3
 )
