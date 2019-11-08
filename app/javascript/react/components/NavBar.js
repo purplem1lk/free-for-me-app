@@ -4,6 +4,7 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import { ChatkitProvider, TokenProvider } from "@pusher/chatkit-client-react";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import AppBar from "@material-ui/core/AppBar";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
@@ -66,13 +67,13 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create("width"),
     width: "100%",
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("sm")]: {
       width: 200
     }
   },
   sectionDesktop: {
     display: "none",
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("sm")]: {
       display: "flex"
     }
   },
@@ -82,6 +83,9 @@ const useStyles = makeStyles(theme => ({
       color: "white",
       textDecoration: "none"
     }
+  },
+  marginRight: {
+    marginRight: "2px"
   }
 }));
 
@@ -195,6 +199,15 @@ const NavBar = props => {
             />
           </div>
           <div className={classes.grow} />
+          <IconButton
+            className={classes.marginRight}
+            edge="end"
+            aria-label="toggle light or dark mode"
+            onClick={props.toggleIsLightMode}
+            color="inherit"
+          >
+            <Brightness4Icon />
+          </IconButton>
           {rightHandContent}
         </Toolbar>
       </AppBar>
