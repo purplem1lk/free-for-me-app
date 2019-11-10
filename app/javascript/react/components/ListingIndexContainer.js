@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Divider from "@material-ui/core/Divider";
+import i18n from "i18next";
+import { useTranslation, initReactI18next } from "react-i18next";
 
 import ListingTile from "./ListingTile";
 
@@ -36,6 +38,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ListingIndexContainer = props => {
+  const { t } = useTranslation();
   const classes = useStyles();
   const [listings, setListings] = useState([]);
   const [showButton, setShowButton] = useState(false);
@@ -86,7 +89,7 @@ const ListingIndexContainer = props => {
       >
         <Link href="/listings/new" className={classes.fabLink} color="inherit">
           <AddIcon />
-          <span className={classes.fabText}>Add Listing</span>
+          <span className={classes.fabText}>{t("addListing")}</span>
         </Link>
       </Fab>
     );
@@ -98,7 +101,7 @@ const ListingIndexContainer = props => {
         <div className="row">
           <div className="columns small-12">
             <Typography variant="h4" gutterBottom>
-              Active Listings in Boston
+              <span className={classes.fabText}>{t("activeListings")}</span>
             </Typography>
             <Divider className={classes.divider} />
           </div>

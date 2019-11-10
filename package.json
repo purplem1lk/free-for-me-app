@@ -17,10 +17,12 @@
     "@pusher/chatkit-client-react": "^0.1.2",
     "@rails/webpacker": "3.5",
     "babel-loader": "^8.0.6",
+    "i18next": "^19.0.0",
     "moment": "^2.24.0",
     "prop-types": "~15.6.0",
     "react": "~16.8.0",
     "react-dom": "~16.8.0",
+    "react-i18next": "^11.1.0",
     "react-moment": "^0.9.6",
     "react-router-dom": "5.1.0",
     "redbox-react": "1.6.0"

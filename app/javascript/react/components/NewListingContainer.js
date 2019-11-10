@@ -164,6 +164,7 @@ const NewListingContainer = props => {
               <TextField
                 id="outlined-based"
                 label="Description"
+                multiline
                 margin="normal"
                 variant="filled"
                 type="text"

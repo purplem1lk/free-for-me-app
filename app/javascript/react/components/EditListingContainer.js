@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
   buttonMargin: {
@@ -20,11 +21,6 @@ const useStyles = makeStyles(theme => ({
   floatRightButton: {
     float: "right",
     marginTop: "1rem"
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 400
   }
 }));
 
@@ -112,48 +108,54 @@ const EditListingContainer = props => {
       >
         <div className="row">
           <div className="columns small-12">
-            <h4 className={classes.topRow}>Edit Listing Form</h4>
+            <h3 className={classes.topRow}>Edit Listing Form</h3>
             <h5 className="text-center">{errors.user}</h5>
-            <label>
-              Title: {errors.title}
-              <input
-                type="text"
-                name="title"
-                value={editListing.title}
-                onChange={handleInputChange}
-                className={classes.fullWidthTextInput}
-              />
-            </label>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              id="outlined-based"
+              margin="normal"
+              label="Title"
+              variant="filled"
+              type="text"
+              name="title"
+              value={editListing.title}
+              onChange={handleInputChange}
+              className={classes.fullWidthTextInput}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="columns small-12">
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              id="outlined-based"
+              margin="normal"
+              label="Description"
+              multiline
+              variant="filled"
+              type="text"
+              name="description"
+              value={editListing.description}
+              onChange={handleInputChange}
+              className={classes.fullWidthTextInput}
+            />
           </div>
         </div>
 
         <div className="row">
           <div className="columns small-12">
-            <label>
-              Description: {errors.description}
-              <input
-                type="text"
-                name="description"
-                value={editListing.description}
-                onChange={handleInputChange}
-                className={classes.fullWidthTextInput}
-              />
-            </label>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="columns small-12">
-            <label>
-              Postal Code: {errors.postal_code}
-              <input
-                type="text"
-                name="postal_code"
-                value={editListing.postal_code}
-                onChange={handleInputChange}
-                className={classes.fullWidthTextInput}
-              />
-            </label>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              id="outlined-based"
+              margin="normal"
+              label="Postal Code"
+              variant="filled"
+              type="text"
+              name="postal_code"
+              value={editListing.postal_code}
+              onChange={handleInputChange}
+              className={classes.fullWidthTextInput}
+            />
           </div>
         </div>
 
@@ -165,6 +167,15 @@ const EditListingContainer = props => {
                 className={classes.buttonMargin}
               >
                 Cancel
+              </Button>
+
+              <Button
+                variant="outlined"
+                color="inherit"
+                type="submit"
+                className={classes.buttonMargin}
+              >
+                Delete Listing
               </Button>
 
               <Button variant="contained" color="primary" type="submit">
