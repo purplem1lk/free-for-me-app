@@ -16,6 +16,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Functions from "../utils/Functions";
 import MessagesButton from "./MessagesButton";
+import SelectLanguageButton from "./SelectLanguageButton"
 
 const instanceLocator = "v1:us1:ac944341-a321-4e72-968c-e2e07aca10ac";
 const tokenProvider = new TokenProvider({
@@ -123,7 +124,7 @@ const NavBar = props => {
   };
 
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
+  const renderUserMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -199,6 +200,8 @@ const NavBar = props => {
             />
           </div>
           <div className={classes.grow} />
+          <SelectLanguageButton/>
+
           <IconButton
             className={classes.marginRight}
             edge="end"
@@ -211,7 +214,7 @@ const NavBar = props => {
           {rightHandContent}
         </Toolbar>
       </AppBar>
-      {renderMenu}
+      {renderUserMenu}
     </div>
   );
 };
